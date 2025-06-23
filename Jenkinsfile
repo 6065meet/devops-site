@@ -7,12 +7,6 @@ pipeline {
   }
 
   stages {
-    stage('Clone Repo') {
-      steps {
-        git 'https://github.com/6065meet/devops-site.git'
-      }
-    }
-
     stage('Build Docker Image') {
       steps {
         sh 'docker build -t $IMAGE_NAME ./devops-site'
