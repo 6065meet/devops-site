@@ -1,5 +1,31 @@
 pipeline {
-  agent any
+  agent {
+    kubernetes {
+      label 'docker-agent'
+      defaultContainer 'docker'
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: docker
+spec:
+  containers:
+  - name: docker
+    image: docker:24.0.7-cli
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+      - name: dockersock
+        mountPath: /var/run/docker.sock
+  volumes:
+    - name: dockersock
+      hostPath:
+        path: /var/run/docker.sock
+"""
+    }
+  }
 
   environment {
     IMAGE_NAME = "6065meet/devops-journey"
