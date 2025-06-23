@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: devops-site
+  namespace: devops-site
 spec:
   replicas: 1
   selector:
@@ -14,8 +15,6 @@ spec:
     spec:
       containers:
       - name: devops-site
-        image: devops-journey
-        imagePullPolicy: IfNotPresent
+        image: 6065meet/devops-journey:latest  # ✅ Your DockerHub image
         ports:
         - containerPort: 80
-
