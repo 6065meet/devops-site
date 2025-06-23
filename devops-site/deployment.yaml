@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-site
+  namespace: devops-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-site
+  template:
+    metadata:
+      labels:
+        app: devops-site
+    spec:
+      containers:
+      - name: devops-site
+        image: devops-journey
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+
