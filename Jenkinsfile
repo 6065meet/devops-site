@@ -65,4 +65,10 @@ spec:
       }
     }
 
-    stage('Deploy to Kub
+    stage('Deploy to Kubernetes') {
+      steps {
+        sh 'kubectl set image deployment/devops-site devops-site=$IMAGE_NAME -n $KUBE_NAMESPACE'
+      }
+    }
+  }
+}
